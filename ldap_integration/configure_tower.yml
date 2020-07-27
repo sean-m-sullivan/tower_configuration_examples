@@ -1,0 +1,24 @@
+---
+- name: Playbook to configure ansible tower post installation
+  hosts: localhost
+  connection: local
+  # Define following vars here, or in tower_configs/tower_auth.yml
+  # tower_hostname: ansible-tower-web-svc-test-project.example.com
+  # tower_username: admin
+  # tower_password: changeme
+
+  collections:
+   - awx.awx
+   - sean_m_sullivan.tower_configuration
+
+  pre_tasks:
+    - name: Include vars from tower_configs directory
+      include_vars:
+        dir: ./tower_configs
+        ignore_files: [tower_config.yml.template]
+        extensions: ["yml"]
+      tags:
+        - always
+  roles:
+    - {role: tower_settings, when: tower_settings is defined, tags: tower_settings}
+    - {role: organizations, when: tower_organizations is defined, tags: organizations}
