@@ -7,19 +7,25 @@ ldap_groups:
 ldap_users:
   - username: app.dev
     department: application
+    uid: 1
     gid: 1
   - username: app.qa
     department: application
+    uid: 2
     gid: 1
   - username: app.ops
     department: application
+    uid: 3
     gid: 1
   - username: platform.dev
     department: platform
+    uid: 4
     gid: 2
   - username: platform.qa
     department: platform
+    uid: 5
     gid: 2
   - username: platform.ops
     department: platform
+    uid: 6
     gid: 2
