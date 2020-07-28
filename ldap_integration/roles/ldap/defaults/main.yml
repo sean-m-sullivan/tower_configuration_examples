@@ -1,0 +1,8 @@
+ldap_groups:
+  - Infrastructure
+  - Support
+  - Middleware
+
+ldap_admin_password: password
+
+ldap_users: []

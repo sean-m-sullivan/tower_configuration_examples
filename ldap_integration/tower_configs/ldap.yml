@@ -1,0 +1,14 @@
+
+ldap_users:
+  - username: app.dev
+    department: application
+  - username: app.qa
+    department: application
+  - username: app.ops
+    department: application
+  - username: platform.dev
+    department: platform
+  - username: platform.qa
+    department: platform
+  - username: platform.ops
+    department: platform

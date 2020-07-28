@@ -1,0 +1,24 @@
+---
+
+# TODO convert ldif file to ldap entry module
+# https://docs.ansible.com/ansible/latest/modules/ldap_entry_module.html
+
+- name: Create LDAP ldif configuration
+  template:
+    src: export.ldif.j2
+    dest: "/tmp/config.ldif"
+    mode: 0600
+
+- name: Copy ldif configuration to LDAP container
+  shell: >
+    docker cp /tmp/config.ldif
+    ldap:/config.ldif
+
+- name: Wait 10 seconds for LDAP service to be available
+  wait_for:
+    timeout: 10
+
+- name: Setup Users/Groups in LDAP (import ldif)
+  shell: >
+    docker exec ldap ldapadd -x
+    -D "cn=admin,dc=example,dc=com" -w {{ ldap_admin_password }} -H ldap:// -f /config.ldif

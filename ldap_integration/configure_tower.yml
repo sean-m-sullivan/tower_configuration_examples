@@ -20,5 +20,6 @@
       tags:
         - always
   roles:
+    - {role: ldap, when: ldap_users is defined, tags: ldap}  
     - {role: tower_settings, when: tower_settings is defined, tags: tower_settings}
     - {role: organizations, when: tower_organizations is defined, tags: organizations}

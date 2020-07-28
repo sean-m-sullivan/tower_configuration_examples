@@ -1,0 +1,41 @@
+version: 1
+
+# Groups
+dn: ou=Groups,dc=example,dc=com
+objectclass: organizationalUnit
+objectclass: top
+ou: Groups
+
+# Users
+dn: ou=Users,dc=example,dc=com
+objectclass: organizationalUnit
+objectclass: top
+ou: Users
+
+{% for group in ldap_groups %}
+dn: cn={{ group.name }},ou=Groups,dc=example,dc=com
+cn: {{ group.name }}
+gidnumber: {{ group.gid }}
+objectclass: posixGroup
+objectclass: top
+
+{% endfor %}
+
+{% for user in ldap_users %}
+dn: cn={{ user.username }},ou=Users,dc=example,dc=com
+cn: {{ user.username.split('.')[0] }} {{ user.username.split('.')[1] }}
+gidnumber: {{ user.gid }}
+givenname: {{ user.username.split('.')[0] }}
+homedirectory: /home/{{ user.username }}
+loginshell: /bin/bash
+objectclass: inetOrgPerson
+objectclass: posixAccount
+objectclass: top
+sn: {{ user.username.split('.')[1] }}
+uid: {{ user.username }}
+uidnumber: {{ user.uid }}
+# userpassword: {SSHA}VWBMWzn07Syf8/r4/b75AOJrYPfqKbP2
+userpassword: password
+mail: {{ user.username }}@example.com
+
+{% endfor %}
