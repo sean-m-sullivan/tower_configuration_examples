@@ -6,4 +6,7 @@ verbosity: 1
 skip_list:
   # [E204]: "Lines should be no longer than 160 chars"
   # (Disabled in June 2020)
+  # [E503] Tasks that run when changed should likely be handlers
+  # (Disabled July 2020)
   - '204'
+  - '503'

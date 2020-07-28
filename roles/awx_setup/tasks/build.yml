@@ -75,7 +75,7 @@
     networks:
       - name: "{{ tower_env }}_tower_net"
     state: started
-    
+
 - name: Setup awx_web container
   docker_container:
     name: "{{ tower_env }}_awx_web"
