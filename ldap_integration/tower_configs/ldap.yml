@@ -1,4 +1,9 @@
-
+ldap_groups:
+  - name: Infrastructure
+    gid: 1
+  - name: Support
+    gid: 2
+    
 ldap_users:
   - username: app.dev
     department: application
