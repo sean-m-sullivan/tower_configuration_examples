@@ -1,19 +1,25 @@
 ldap_groups:
-  - name: Infrastructure
+  - name: Application
     gid: 1
-  - name: Support
+  - name: Platform
     gid: 2
     
 ldap_users:
   - username: app.dev
     department: application
+    gid: 1
   - username: app.qa
     department: application
+    gid: 1
   - username: app.ops
     department: application
+    gid: 1
   - username: platform.dev
     department: platform
+    gid: 2
   - username: platform.qa
     department: platform
+    gid: 2
   - username: platform.ops
     department: platform
+    gid: 2
