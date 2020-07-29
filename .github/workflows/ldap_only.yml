@@ -47,5 +47,8 @@ jobs:
       - name: Show docker containers
         run: docker container ls --all
 
+      - name: Show docker containers
+        run: docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' openldap
+
       - name: "Perform playbook tests"
         run: ansible-playbook ldap_integration/configure_tower.yml -e tower_hostname=http://localhost -e tower_username=admin -e tower_password=password
