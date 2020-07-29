@@ -15,7 +15,7 @@
     image: osixia/openldap:latest
     hostname: "ldap"
     networks:
-      - name: ldap_net
+      - name: default
     ports:
       - "389:389"
       - "636:636"
@@ -30,7 +30,7 @@
     image: osixia/phpldapadmin:latest
     hostname: "ldap_admin"
     networks:
-      - name: ldap_net
+      - name: default
     ports:
       - "8443:443"
     env:
