@@ -11,7 +11,7 @@
 
 - name: Copy ldif configuration to LDAP container
   shell: >
-    docker cp /tmp/config.ldif openldap:/config.ldif
+    docker cp /tmp/config.ldif openldap:config.ldif
 
 - name: Wait 10 seconds for LDAP service to be available
   wait_for:
