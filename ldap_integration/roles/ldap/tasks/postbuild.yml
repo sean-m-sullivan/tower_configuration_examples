@@ -21,4 +21,4 @@
 - name: Setup Users/Groups in LDAP (import ldif)
   shell: >
     docker exec openldap ldapadd -x
-    -D "cn=admin,dc=example,dc=com" -w {{ ldap_admin_password }} -H ldap:// -f /config.ldif
+    -D "cn=admin,dc=example,dc=com" -w {{ ldap_admin_password }} -H openldap:// -f /config.ldif
