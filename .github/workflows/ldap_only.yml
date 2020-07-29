@@ -22,8 +22,5 @@ jobs:
       - name: Display Versions
         run: which python && pip --version && ansible --version
 
-      - name: Show docker containers
-        run: docker ps --format "{{.Names}}"
-
       - name: "Perform playbook tests"
         run: ansible-playbook ldap_integration/configure_tower.yml -e tower_hostname=http://localhost -e tower_username=admin -e tower_password=password
