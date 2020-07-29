@@ -1,0 +1,37 @@
+---
+# ldap/tasks/build.yml
+# @author Anthony Loukinas <anthony.loukinas@redhat.com>
+
+- name: remove
+  docker_container:
+    name: "{{ item }}"
+    state: absent
+  loop: 
+  - ldap
+
+- name: Create LDAP container
+  docker_container:
+    name: ldap
+    image: osixia/openldap:latest
+    hostname: "ldap"
+    networks:
+      - name: ldap_net
+    ports:
+      - "389:389"
+      - "636:636"
+    env:
+      LDAP_ORGANISATION: example
+      LDAP_DOMAIN: example.com
+      LDAP_ADMIN_PASSWORD: password
+
+- name: Create PhpLdapAdmin container
+  docker_container:
+    name: ldap_admin
+    image: osixia/phpldapadmin:latest
+    hostname: "ldap_admin"
+    networks:
+      - name: ldap_net
+    ports:
+      - "8443:443"
+    env:
+      PHPLDAPADMIN_LDAP_HOSTS: "ldap"
