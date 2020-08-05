@@ -41,5 +41,10 @@
     name: ldap
   register: docker_ldap_info
 
-- debug:
-    var: docker_ldap_info
+- name: Debug container IP
+  debug:
+    var: docker_ldap_info.container.NetworkSettings.IPAddress
+
+- name: Set ldap ip address fact
+  set_fact:
+    ldap_container_ip: docker_ldap_info.container.NetworkSettings.IPAddress
