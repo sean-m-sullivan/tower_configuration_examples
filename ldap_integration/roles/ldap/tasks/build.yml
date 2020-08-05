@@ -35,3 +35,11 @@
       - "8443:443"
     env:
       PHPLDAPADMIN_LDAP_HOSTS: "ldap"
+
+- name: Get infos on container
+  docker_container_info:
+    name: ldap
+  register: docker_ldap_info
+
+- debug:
+    var: docker_ldap_info
