@@ -22,3 +22,8 @@
   shell: >
     docker exec ldap ldapadd -x
     -D "cn=admin,dc=example,dc=com" -w {{ ldap_admin_password }} -H ldap:// -f /config.ldif
+
+- name: Test Ldap Connection
+  shell: >
+    ldapsearch -x -LLL -h {{ ldap_container_ip }} -D app.dev -w password -b"cn=admin,dc=example,dc=com" -s sub "(objectClass=user)" givenName
+  
