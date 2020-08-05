@@ -40,10 +40,7 @@ jobs:
         run: ansible-galaxy collection install -r .github/collections/requirements.yml
 
       - name: "Install ldap dependencies"
-        run: sudo apt-file list ldapsearch
-
-      - name: "Install ldap dependencies"
-        run: sudo apt-get install openldap-clients
+        run: sudo apt install libnss-ldap libpam-ldap ldap-utils nscd
 
       #- name: Wait / Sleep
       #  uses: jakejarvis/wait-action@v0.1.0
