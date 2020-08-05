@@ -39,6 +39,9 @@ jobs:
       - name: "Install Galaxy dependencies"
         run: ansible-galaxy collection install -r .github/collections/requirements.yml
 
+      - name: "Install ldap dependencies"
+        run: apt-get install openldap-clients
+
       #- name: Wait / Sleep
       #  uses: jakejarvis/wait-action@v0.1.0
       #  with:
