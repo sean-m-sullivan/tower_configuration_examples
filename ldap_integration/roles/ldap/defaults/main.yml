@@ -5,4 +5,7 @@ ldap_groups:
 
 ldap_admin_password: password
 
-ldap_users: []
+ldap_users:
+  - admin
+  - guest
+  - test
