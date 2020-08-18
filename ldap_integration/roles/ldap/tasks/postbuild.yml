@@ -25,5 +25,6 @@
 
 - name: Test Ldap Connection
   shell: >
-    ldapsearch -x -LLL -h {{ ldap_container_ip }} -w password -D "cn=admin,dc=example,dc=com" -s sub "(objectClass=user)" givenName
+    ldapsearch -x -LLL -h {{ ldap_container_ip }} -w password -D "cn=admin,dc=example,dc=com" -s sub "(objectclass=*)" givenName
+    #ldapsearch -x -LLL -h {{ ldap_container_ip }} -w password -D "cn=admin,dc=example,dc=com" -s sub "(objectClass=user)" givenName
   
