@@ -1,0 +1,20 @@
+---
+# Playbook to deploy Ansible Tower
+
+- name: Install Tower
+  hosts: tower_installer
+  vars:
+    tower_hosts: "{{ tower_single_node | default(false) | ternary(['localhost ansible_connection=local'], groups.tower) }}"
+    tower_database: "{{ groups.db.0 | default('') }}"
+    tower_server: "https://{{ tower_single_node | default(false) | ternary('localhost', groups.tower.0) }}"
+  collections:
+    - redhat_cop.tower_utilities
+  roles:
+    - tower_install
+
+- name: Add Tower Certs
+  hosts: tower
+  collections:
+    - redhat_cop.tower_utilities
+  roles:
+    - { role: tower_cert, tags: install_certs }
